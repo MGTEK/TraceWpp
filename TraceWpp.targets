@@ -10,7 +10,8 @@
   </ItemGroup>
   <PropertyGroup>
     <ExtensionsToDeleteOnClean>$(ExtensionsToDeleteOnClean);*.tmh</ExtensionsToDeleteOnClean>
-    <WppConfigPath Condition="'$(WppConfigPath)'==''">$(WindowsSdkDir)bin\WppConfig\Rev1</WppConfigPath>
+    <WppConfigPath Condition="'$(WppConfigPath)'==''">$(WDKBinRoot)\WppConfig\Rev1</WppConfigPath>
+    <WppConfigPath Condition="!Exists('$(WppConfigPath)')">$(WindowsSdkDir)bin\WppConfig\Rev1</WppConfigPath>
   </PropertyGroup>
   <Target Name="CheckTraceWppLinkPrerequisites" BeforeTargets="Link" DependsOnTargets="ComputeLinkSwitches">
     <Warning Condition="'$(WppDisplayWarnings)'=='true' and '%(Link.GenerateDebugInformation)'=='No'" Text="The linker will not generate debugging information. Use the linker switch /DEBUG to generate a PDB file." />
